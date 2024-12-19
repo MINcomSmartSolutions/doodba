@@ -2,6 +2,8 @@ name: Build and Push Odoo Image
 
 on:
   push:
+    paths:
+      - odoo/**
 
 jobs:
   build-and-push:
@@ -25,7 +27,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build Odoo Image
+      - name: Build Image
         working-directory: ./odoo
         run: |
           docker build \
@@ -37,7 +39,7 @@ jobs:
           --build-arg COMPILE=true \
           -t ghcr.io/mincomsmartsolutions/doodba/odoo:latest .
 
-      - name: Push Odoo Image
+      - name: Push Image
         working-directory: ./odoo
         run: |
           docker push ghcr.io/mincomsmartsolutions/doodba/odoo:latest

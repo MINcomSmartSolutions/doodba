@@ -6,7 +6,7 @@
 
 # STROHM - a Doodba deployment
 
-This project is a Doodba scaffolding. Check upstream docs on the matter:
+    Doodba helps us build our custom Odoo image easily.
 
 - [General Doodba docs](https://github.com/Tecnativa/doodba).
 - [Doodba copier template docs](https://github.com/Tecnativa/doodba-copier-template)
@@ -14,4 +14,4 @@ This project is a Doodba scaffolding. Check upstream docs on the matter:
 
 # Credits
 
-This project is maintained by: YCS
+This project is maintained by: ycs@min2s.com
