@@ -37,9 +37,9 @@ jobs:
           --build-arg AGGREGATE=true \
           --build-arg CLEAN=true \
           --build-arg COMPILE=true \
-          -t ghcr.io/mincomsmartsolutions/doodba/odoo:latest .
+          -t ghcr.io/mincomsmartsolutions/odoo:latest .
 
       - name: Push Image
         working-directory: ./odoo
         run: |
-          docker push ghcr.io/mincomsmartsolutions/doodba/odoo:latest
+          docker push ghcr.io/mincomsmartsolutions/odoo:latest
