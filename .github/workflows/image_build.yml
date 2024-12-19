@@ -27,8 +27,8 @@ jobs:
           --build-arg CLEAN=true \
           --build-arg COMPILE=true \
           --file odoo/Dockerfile \
-          -t ghcr.io/${{ github.repository }}/odoo:latest .
+          -t ghcr.io/mincomsmartsolutions/doodba/odoo:latest .
 
       - name: Push Odoo Image
         run: |
-          docker push ghcr.io/${{ github.repository }}/odoo:latest
+          docker push ghcr.io/mincomsmartsolutions/doodba/odoo:latest
