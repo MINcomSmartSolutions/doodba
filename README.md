@@ -4,9 +4,9 @@
 [![LGPL-3.0-or-later license](https://img.shields.io/badge/license-LGPL--3.0--or--later-success})](LICENSE)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
 
-# STROHM - a Doodba deployment
+# Doodba deployment
 
-    Doodba helps us build our custom Odoo image easily.
+Doodba helps us build our custom Odoo image easily.
 
 - [General Doodba docs](https://github.com/Tecnativa/doodba).
 - [Doodba copier template docs](https://github.com/Tecnativa/doodba-copier-template)
