@@ -1,0 +1,33 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v8.2.0
+_src_path: gh:Tecnativa/doodba-copier-template
+backup_dst: ""
+cidr_whitelist: null
+domains_prod: {}
+domains_test: {}
+gitlab_url: ""
+odoo_dbfilter: ^odoo_db
+odoo_initial_lang: de_DE
+odoo_listdb: false
+odoo_oci_image: ""
+odoo_proxy: other
+odoo_version: 18.0
+paths_without_crawlers:
+  - /web
+  - /website/info
+postgres_cidr_whitelist: null
+postgres_dbname: odoo_db
+postgres_exposed: true
+postgres_exposed_port: 5432
+postgres_username: odoo_db_admin
+postgres_version: "16"
+project_author: YCS
+project_license: LGPL-3.0-or-later
+project_name: STROHM
+smtp_canonical_default: mincom-smart-solutions.com
+smtp_canonical_domains: []
+smtp_default_from: no-reply@mincom-smart-solutions.com
+smtp_relay_host: smtp.1blu.de
+smtp_relay_port: 587
+smtp_relay_user: ""
+smtp_relay_version: "14"

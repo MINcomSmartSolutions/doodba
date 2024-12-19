@@ -1,0 +1,63 @@
+version: "2.4"
+
+services:
+  odoo:
+    build:
+      context: ./odoo
+      args:
+        DB_VERSION: "16"
+        ODOO_VERSION: "18.0"
+        UID: "${UID:-1000}"
+        GID: "${GID:-1000}"
+    environment:
+      EMAIL_FROM: "no-reply@mincom-smart-solutions.com"
+      PGDATABASE: &dbname odoo_db
+      PGUSER: &dbuser "odoo_db_admin"
+      PROXY_MODE: "true"
+      LIST_DB: "false"
+    tty: true
+    volumes:
+      - filestore:/var/lib/odoo:z
+
+  db:
+    image: ghcr.io/tecnativa/postgres-autoconf:16-alpine
+    shm_size: 4gb
+    environment:
+      POSTGRES_DB: *dbname
+      POSTGRES_USER: *dbuser
+      CONF_EXTRA: |
+        work_mem = 512MB
+    volumes:
+      - db:/var/lib/postgresql/data:z
+
+  smtpfake:
+    image: docker.io/mailhog/mailhog
+
+  smtpreal:
+    image: ghcr.io/docker-mailserver/docker-mailserver:14
+    hostname: "smtp.mincom-smart-solutions.com"
+    stop_grace_period: 1m
+    volumes:
+      - mailconfig:/tmp/docker-mailserver:z
+      - maildata:/var/mail:z
+      - maillogs:/var/log/mail:z
+      - maillogssupervisord:/var/log/supervisor:z
+      - mailstate:/var/mail-state:z
+    cap_add:
+      - SYS_PTRACE
+    environment:
+      DEFAULT_RELAY_HOST: "[smtp.1blu.de]:587"
+
+      LOG_LEVEL: info
+      ENABLE_SRS: 1
+      ONE_DIR: 1
+      PERMIT_DOCKER: connected-networks
+      POSTFIX_INET_PROTOCOLS: ipv4
+      POSTFIX_MESSAGE_SIZE_LIMIT: 52428800 # 50 MiB
+      RELAY_HOST: "smtp.1blu.de"
+      RELAY_PORT: "587"
+      RELAY_USER: ""
+      SMTP_ONLY: 1
+      SRS_DOMAINNAME: "mincom-smart-solutions.com"
+      SRS_EXCLUDE_DOMAINS: "mincom-smart-solutions.com"
+      SRS_SENDER_CLASSES: envelope_sender,header_sender
