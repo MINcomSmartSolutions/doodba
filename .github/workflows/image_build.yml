@@ -18,7 +18,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Build Odoo Image
-        working-directory: ./odoo
+        working-directory: odoo
         run: |
           docker build \
           --build-arg DEFAULT_REPO_PATTERN="https://github.com/MINcomSmartSolutions/{}.git" \
@@ -30,6 +30,6 @@ jobs:
           -t ghcr.io/${{ github.repository }}/odoo:latest .
 
       - name: Push Odoo Image
-        working-directory: ./odoo
+        working-directory: odoo
         run: |
           docker push ghcr.io/${{ github.repository }}/odoo:latest
