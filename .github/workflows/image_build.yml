@@ -19,6 +19,7 @@ jobs:
 
       - name: Build Odoo Image
         run: |
+          pwd && ls -la &&
           docker build \
           --build-arg DEFAULT_REPO_PATTERN="https://github.com/MINcomSmartSolutions/{}.git" \
           --build-arg DEFAULT_REPO_PATTERN_ODOO="https://github.com/MINcomSmartSolutions/odoo.git" \
