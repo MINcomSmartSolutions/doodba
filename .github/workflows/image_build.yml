@@ -27,10 +27,6 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-        with:
-          # See https://github.com/docker/build-push-action/issues/761
-          driver-opts: |
-            image=moby/buildkit:v0.10.6
 
       - name: Determine version tag
         id: vars
@@ -57,4 +53,4 @@ jobs:
             AGGREGATE=true
             CLEAN=true
             COMPILE=true
-          tags: mincomsmartsolutions/odoo:${{ env.VERSION }}
+          tags: ghcr.io/mincomsmartsolutions/odoo:${{ env.VERSION }}
