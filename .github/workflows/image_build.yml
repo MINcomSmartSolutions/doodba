@@ -41,8 +41,8 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v6
-        context: ./odoo
         with:
+          context: ./odoo
           push: ${{ github.event_name != 'pull_request' }}
           build-args:
             - ODOO_VERSION=18.0
