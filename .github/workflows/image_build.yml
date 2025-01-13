@@ -45,6 +45,7 @@ jobs:
         with:
           context: ./odoo
           push: ${{ github.event_name != 'pull_request' }}
+          platforms: linux/amd64,linux/arm64
           build-args: |
             ODOO_VERSION=18.0
             DEFAULT_REPO_PATTERN="https://github.com/MINcomSmartSolutions/{}.git"
