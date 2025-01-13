@@ -44,9 +44,12 @@ jobs:
         with:
           context: ./odoo
           push: ${{ github.event_name != 'pull_request' }}
-          build-args:
-            ODOO_VERSION=18.0
-            DEFAULT_REPO_PATTERN="https://github.com/MINcomSmartSolutions/{}.git"
-            DEFAULT_REPO_PATTERN_ODOO="https://github.com/MINcomSmartSolutions/odoo.git"
-            EMAIL="ycs@min2s.com" AGGREGATE=true CLEAN=true COMPILE=true
+          build-args: |
+            - ODOO_VERSION=18.0
+            - DEFAULT_REPO_PATTERN="https://github.com/MINcomSmartSolutions/{}.git"
+            - DEFAULT_REPO_PATTERN_ODOO="https://github.com/MINcomSmartSolutions/odoo.git"
+            - EMAIL="ycs@min2s.com"
+            - AGGREGATE=true
+            - CLEAN=true
+            - COMPILE=true
           tags: mincomsmartsolutions/odoo:${{ env.VERSION }}
