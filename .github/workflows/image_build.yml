@@ -33,7 +33,7 @@ jobs:
         run: |
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             VERSION="${{ github.event.pull_request.title }}"
-          elif [[ "${{ github.ref }}" == "refs/heads/main/master" ]]; then
+          elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             VERSION="latest"
           else
             VERSION=$(echo "${{ github.ref_name }}" | sed 's/\//-/g')
