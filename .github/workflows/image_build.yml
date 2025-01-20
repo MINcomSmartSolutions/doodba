@@ -28,18 +28,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Determine version tag
-        id: vars
-        run: |
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            VERSION="${{ github.event.pull_request.title }}"
-          elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            VERSION="latest"
-          else
-            VERSION=$(echo "${{ github.ref_name }}" | sed 's/\//-/g')
-          fi
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -47,11 +35,11 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
           build-args: |
-            ODOO_VERSION=18.0
+            ODOO_VERSION=17.0
             DEFAULT_REPO_PATTERN="https://github.com/MINcomSmartSolutions/{}.git"
             DEFAULT_REPO_PATTERN_ODOO="https://github.com/MINcomSmartSolutions/odoo.git"
             EMAIL="ycs@min2s.com"
             AGGREGATE=true
             CLEAN=true
             COMPILE=true
-          tags: ghcr.io/mincomsmartsolutions/odoo:${{ env.VERSION }}
+          tags: ghcr.io/mincomsmartsolutions/odoo:17.0

@@ -1,1 +1,1 @@
-FROM ghcr.io/tecnativa/doodba:18.0-onbuild
+FROM ghcr.io/tecnativa/doodba:17.0-onbuild
