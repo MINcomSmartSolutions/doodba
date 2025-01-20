@@ -7,9 +7,9 @@ services:
       default:
       public:
     ports:
-      - "127.0.0.1:18899:6899"
-      - "127.0.0.1:18069:8069"
-      - "127.0.0.1:18072:8072"
+      - "127.0.0.1:17899:6899"
+      - "127.0.0.1:17069:8069"
+      - "127.0.0.1:17072:8072"
     environment:
       PORT: "6899 8069 8072"
       TARGET: odoo
@@ -35,8 +35,10 @@ services:
       DEBUGPY_ENABLE: "${DOODBA_DEBUGPY_ENABLE:-0}"
       PGDATABASE: &dbname devel
       PYTHONDONTWRITEBYTECODE: 1
+      PYTHONOPTIMIZE: ""
+      PYTHONPATH: /opt/odoo/custom/src/odoo
       SMTP_PORT: "1025"
-      WDB_WEB_PORT: "18984"
+      WDB_WEB_PORT: "17984"
       # To avoid installing demo data export DOODBA_WITHOUT_DEMO=all
       WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-false}"
     volumes:
@@ -68,19 +70,29 @@ services:
       POSTGRES_DB: *dbname
       POSTGRES_PASSWORD: odoopassword
 
+  pgweb:
+    image: docker.io/sosedoff/pgweb
+    networks: *public
+    ports:
+      - "127.0.0.1:17081:8081"
+    environment:
+      DATABASE_URL: postgres://odoo_db_admin:odoopassword@db:5432/devel?sslmode=disable
+    depends_on:
+      - db
+
   smtp:
     extends:
       file: common.yaml
       service: smtpfake
     networks: *public
     ports:
-      - "127.0.0.1:18025:8025"
+      - "127.0.0.1:17025:8025"
 
   wdb:
     image: docker.io/kozea/wdb
     networks: *public
     ports:
-      - "127.0.0.1:18984:1984"
+      - "127.0.0.1:17984:1984"
     # HACK https://github.com/Kozea/wdb/issues/136
     init: true
 
@@ -153,7 +165,7 @@ services:
 
 networks:
   default:
-    internal: ${DOODBA_NETWORK_INTERNAL-true}
+    internal: true
   public:
 
 volumes:

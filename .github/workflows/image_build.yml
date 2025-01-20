@@ -1,4 +1,4 @@
-name: Build and Push Odoo Image
+name: Build and Push Odoo 17 Image
 
 on:
   push:

@@ -1,17 +1,20 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: v8.2.0
+_commit: v8.2.1
 _src_path: gh:Tecnativa/doodba-copier-template
 backup_dst: ""
 cidr_whitelist: null
-domains_prod: {}
+domains_prod:
+  hosts:
+    - mincom-smartsolutions.com
+    - min2s.com
 domains_test: {}
 gitlab_url: ""
 odoo_dbfilter: ^odoo_db
 odoo_initial_lang: de_DE
 odoo_listdb: false
-odoo_oci_image: ""
+odoo_oci_image: ghcr.io/mincomsmartsolutions/odoo
 odoo_proxy: other
-odoo_version: 18.0
+odoo_version: 17.0
 paths_without_crawlers:
   - /web
   - /website/info
@@ -23,7 +26,7 @@ postgres_username: odoo_db_admin
 postgres_version: "16"
 project_author: YCS
 project_license: LGPL-3.0-or-later
-project_name: STROHM
+project_name: DynamicTariffs
 smtp_canonical_default: mincom-smart-solutions.com
 smtp_canonical_domains: []
 smtp_default_from: no-reply@mincom-smart-solutions.com
