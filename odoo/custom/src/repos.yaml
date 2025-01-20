@@ -7,6 +7,6 @@
     depth: $DEPTH_DEFAULT
   remotes:
     odoo: https://github.com/MINcomSmartSolutions/odoo.git
-  target: odoo $ODOO_VERSION
+  target: odoo 18.0
   merges:
-    - odoo $ODOO_VERSION
+    - odoo 18.0

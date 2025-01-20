@@ -4,14 +4,25 @@
 [![LGPL-3.0-or-later license](https://img.shields.io/badge/license-LGPL--3.0--or--later-success})](LICENSE)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://pre-commit.com/)
 
+# Notes
+
+- "main" branch is odoo 18.0 and will be used for ladeabrechnung (STROHM)
+  - The images also will be tagged as 18.0 and latest if they are built from this branch
+- "17.0" branch is odoo 17.0 and will be used for DynamicTariffs
+  - The images also will be tagged as only 17.0 if they are built from this branch
+
+# Structure
+
+The doodba structure is quite complex and requieres a manual.
+
+- [Doodba structure](structure.html)
+
+See [General Doodba docs](https://github.com/Tecnativa/doodba) for more information.
+
 # Doodba deployment
 
-Doodba helps us build our custom Odoo image easily.
+- Doodba is a Docker image for Odoo that is designed to be easy to use and extend our
+  custom Odoo image easily.
 
-- [General Doodba docs](https://github.com/Tecnativa/doodba).
 - [Doodba copier template docs](https://github.com/Tecnativa/doodba-copier-template)
 - [Doodba QA docs](https://github.com/Tecnativa/doodba-qa)
-
-# Credits
-
-This project is maintained by: ycs@min2s.com

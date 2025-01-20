@@ -54,4 +54,6 @@ jobs:
             AGGREGATE=true
             CLEAN=true
             COMPILE=true
-          tags: ghcr.io/mincomsmartsolutions/odoo:${{ env.VERSION }}
+          tags: |
+            - ghcr.io/mincomsmartsolutions/odoo:${{ env.VERSION }}
+            - ghcr.io/mincomsmartsolutions/odoo:18.0
