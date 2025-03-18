@@ -1,9 +1,0 @@
-l10n-de:
-  - l10n_de
-web:
-  - web_responsive
-auth:
-  - auth_signup
-
-portal:
-  - "*"
