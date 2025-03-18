@@ -10,6 +10,7 @@ services:
       - "127.0.0.1:18899:6899"
       - "127.0.0.1:18069:8069"
       - "127.0.0.1:18072:8072"
+      - "127.0.0.1:15432:5432"
     environment:
       PORT: "6899 8069 8072"
       TARGET: odoo
@@ -36,7 +37,8 @@ services:
       PGDATABASE: &dbname devel
       PYTHONDONTWRITEBYTECODE: 1
       SMTP_PORT: "1025"
-      WDB_WEB_PORT: "18984"
+      ODOO_API_SECRET: "anothersecret"
+      WDB_PORT: "1984"
       # To avoid installing demo data export DOODBA_WITHOUT_DEMO=all
       WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-false}"
     volumes:
@@ -51,7 +53,6 @@ services:
       - proxy_www_googleapis_com
       - proxy_www_gravatar_com
       - smtp
-      - wdb
     command:
       - odoo
       - --limit-memory-soft=0
@@ -64,9 +65,17 @@ services:
     extends:
       file: common.yaml
       service: db
+    ports:
+      - "5432:5432"
+    networks: *public
     environment:
       POSTGRES_DB: *dbname
       POSTGRES_PASSWORD: odoopassword
+      WAN_USERS: '["all"]'
+      LAN_USERS: '["all"]'
+      WAN_AUTH_METHOD: trust
+      LAN_AUTH_METHOD: trust
+      HBA_EXTRA_RULES: '["host all all 0.0.0.0/0 trust"]'
 
   smtp:
     extends:

@@ -2,3 +2,5 @@ git+https://github.com/OCA/openupgradelib.git@master
 unicodecsv
 unidecode
 jingtrang
+cryptography
+python-dotenv

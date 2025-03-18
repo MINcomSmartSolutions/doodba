@@ -3,9 +3,8 @@ name: Build and Push Odoo Image
 on:
   workflow_dispatch:
   push:
-    paths:
-      - odoo/**
-      - .github/workflows/**
+    branches:
+      - main
 
 jobs:
   build-and-push:
@@ -51,6 +50,7 @@ jobs:
             ODOO_VERSION=18.0
             DEFAULT_REPO_PATTERN="https://github.com/MINcomSmartSolutions/{}.git"
             DEFAULT_REPO_PATTERN_ODOO="https://github.com/MINcomSmartSolutions/odoo.git"
+            INITIAL_LANG="de_DE"
             EMAIL="ycs@min2s.com"
             AGGREGATE=true
             CLEAN=true
