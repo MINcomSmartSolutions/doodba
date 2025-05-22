@@ -11,6 +11,74 @@
 - "17.0" branch is odoo 17.0 and will be used for DynamicTariffs
   - The images also will be tagged as only 17.0 if they are built from this branch
 
+## Modules
+
+The aggregated list of modules that are finally installed in the image is:
+
+| name                          |
+| :---------------------------- |
+| analytic                      |
+| google_gmail                  |
+| l10n_din5008                  |
+| l10n_din5008_sale             |
+| account_edi_ubl_cii           |
+| spreadsheet                   |
+| account                       |
+| account_payment               |
+| auth_signup                   |
+| base                          |
+| base_import                   |
+| base_import_module            |
+| base_install_request          |
+| html_editor                   |
+| l10n_de                       |
+| onboarding                    |
+| partner_autocomplete          |
+| payment                       |
+| phone_validation              |
+| portal                        |
+| privacy_lookup                |
+| resource                      |
+| resource_mail                 |
+| sale_service                  |
+| sale_sms                      |
+| sms                           |
+| snailmail                     |
+| snailmail_account             |
+| spreadsheet_dashboard_sale    |
+| utm                           |
+| web                           |
+| web_editor                    |
+| strohm_addon                  |
+| spreadsheet_dashboard_account |
+| auth_totp_mail                |
+| mail                          |
+| bus                           |
+| base_iban                     |
+| sale_edi_ubl                  |
+| base_setup                    |
+| product                       |
+| payment_stripe                |
+| sale                          |
+| sale_management               |
+| sale_async_emails             |
+| sale_pdf_quote_builder        |
+| http_routing                  |
+| uom                           |
+| web_tour                      |
+| web_unsplash                  |
+| iap                           |
+| iap_mail                      |
+| digest                        |
+| mail_bot                      |
+| spreadsheet_dashboard         |
+| spreadsheet_account           |
+| auth_totp_portal              |
+| account_qr_code_sepa          |
+| base_vat                      |
+| auth_totp                     |
+| sales_team                    |
+
 # Structure
 
 The doodba structure is quite complex and requieres a manual.
