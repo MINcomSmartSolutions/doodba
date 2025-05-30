@@ -4,3 +4,5 @@ unidecode
 jingtrang
 cryptography
 python-dotenv
+pydantic==2.11.5
+email-validator==2.2.0
