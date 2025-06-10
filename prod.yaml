@@ -13,7 +13,9 @@ services:
       DB_FILTER: "^odoo_db"
       DOODBA_ENVIRONMENT: "${DOODBA_ENVIRONMENT-prod}"
       INITIAL_LANG: "de_DE"
+      ODOO_BUS_PUBLIC_SAMESITE_WS: 1
       SMTP_SERVER: smtplocal
+      PGHOST: STROHM-18-0-prod-db
     depends_on:
       - db
       - smtp
@@ -26,9 +28,15 @@ services:
     extends:
       file: common.yaml
       service: db
+    environment:
+      DB_HOST: STROHM-18-0-prod-db
     env_file:
       - .docker/db-creation.env
     restart: unless-stopped
+    networks:
+      default:
+        aliases:
+          - "STROHM-18-0-prod-db"
     ports:
       - "5432:5432"
 

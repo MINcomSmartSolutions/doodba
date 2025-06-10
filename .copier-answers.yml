@@ -1,5 +1,6 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: v8.2.0
+#@formatter: off
+_commit: v8.3.9
 _src_path: gh:Tecnativa/doodba-copier-template
 backup_dst: ""
 cidr_whitelist: null
@@ -9,7 +10,7 @@ gitlab_url: ""
 odoo_dbfilter: ^odoo_db
 odoo_initial_lang: de_DE
 odoo_listdb: false
-odoo_oci_image: ""
+odoo_oci_image: ghcr.io/mincomsmartsolutions/odoo
 odoo_proxy: other
 odoo_version: 18.0
 paths_without_crawlers:
