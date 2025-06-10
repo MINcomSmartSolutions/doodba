@@ -12,20 +12,22 @@ jobs:
   odoo-source-tests:
     runs-on: ubuntu-latest
 
+    services:
+      db-test:
+        image: postgres:16.6
+        env:
+          POSTGRES_USER: odoo_admin
+          POSTGRES_DB: odoo_test
+          POSTGRES_PASSWORD: testpassword
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 3s
+          --health-retries 3
+
     steps:
       - name: Checkout doodba repository
         uses: actions/checkout@v4
-
-      - name: Create directory structure
-        run: |
-          mkdir -p odoo/custom/src/
-
-      - name: Checkout Odoo source repository
-        uses: actions/checkout@v4
-        with:
-          repository: MINcomSmartSolutions/odoo
-          ref: ${{ github.event.inputs.odoo_branch }}
-          path: odoo/custom/src/odoo
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -43,7 +45,7 @@ jobs:
             AGGREGATE=true
             PIP_INSTALL_ODOO=true
             CLEAN=true
-            COMPILE=true
+            COMPILE=false
             INITIAL_LANG="de_DE"
 
       - name: Run Odoo Tests
