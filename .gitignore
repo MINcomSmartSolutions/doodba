@@ -30,3 +30,5 @@
 /.docker/
 /.idea/
 .idea/
+
+/strohm_addon

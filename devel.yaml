@@ -6,8 +6,6 @@ services:
     build:
       args:
         AGGREGATE: "false"
-        UID: "${UID:-1000}"
-        GID: "${GID:-1000}"
         PIP_INSTALL_ODOO: "false"
         CLEAN: "false"
         COMPILE: "false"
@@ -27,6 +25,7 @@ services:
     volumes:
       - ./odoo/custom:/opt/odoo/custom:ro,z
       - ./odoo/auto:/opt/odoo/auto:rw,z
+      - filestore:/var/lib/odoo:z
     depends_on:
       - db
     command:

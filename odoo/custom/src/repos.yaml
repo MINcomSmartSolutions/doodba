@@ -6,7 +6,18 @@
     # for a sane value of 100 commits)
     depth: $DEPTH_DEFAULT
   remotes:
-    odoo: https://github.com/MINcomSmartSolutions/odoo.git
-  target: odoo 18.0
+    origin: https://github.com/OCA/OCB.git
+    odoo: https://github.com/odoo/odoo.git
+    openupgrade: https://github.com/OCA/OpenUpgrade.git
+  target: origin $ODOO_VERSION
   merges:
-    - odoo 18.0
+    - origin $ODOO_VERSION
+
+./strohm-addon-repo:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/MINcomSmartSolutions/strohm_addon.git
+  target: origin main
+  merges:
+    - origin main

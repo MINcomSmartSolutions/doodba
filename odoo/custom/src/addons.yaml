@@ -5,3 +5,6 @@ ONLY:
     - test
 web:
   - web_environment_ribbon
+
+strohm-addon-repo:
+  - strohm_addon

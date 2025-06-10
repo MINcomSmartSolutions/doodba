@@ -14,8 +14,6 @@ services:
       PROXY_MODE: "false"
       LIST_DB: "false"
     tty: true
-    volumes:
-      - filestore:/var/lib/odoo:z
 
   db:
     image: ghcr.io/tecnativa/postgres-autoconf:16-alpine
