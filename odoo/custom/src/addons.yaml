@@ -1,0 +1,7 @@
+# Enable demo ribbon only for devel and test environments
+ONLY:
+  ODOO_ENV: # This environment variable must exist and be in the list
+    - dev
+    - test
+web:
+  - web_environment_ribbon

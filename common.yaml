@@ -11,7 +11,7 @@ services:
       EMAIL_FROM: "no-reply@mincom-smart-solutions.com"
       PGDATABASE: &dbname odoo_db
       PGUSER: &dbuser "odoo_db_admin"
-      PROXY_MODE: "true"
+      PROXY_MODE: "false"
       LIST_DB: "false"
     tty: true
     volumes:
