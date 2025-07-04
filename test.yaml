@@ -1,28 +1,35 @@
-version: "2.4"
-
 services:
   odoo:
     extends:
       file: common.yaml
       service: odoo
+    build:
+      context: ./odoo
+      args:
+        AGGREGATE: true
+        CLEAN: true
+        COMPILE: false
     env_file:
-      - .docker/odoo.env
-      - .docker/db-access.env
+      - .docker/odoo-test.env
+      - .docker/db-test-access.env
     environment:
       DOODBA_ENVIRONMENT: "${DOODBA_ENVIRONMENT-test}"
+      ODOO_ENV: test
+      INITIAL_LANG: de_DE
+      PROXY_MODE: false
+      ODOO_BUS_PUBLIC_SAMESITE_WS: 1
       # To install demo data export DOODBA_WITHOUT_DEMO=false
-      WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-all}"
+      WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-false}"
       SMTP_PORT: "1025"
       SMTP_SERVER: smtplocal
       # Just in case you use queue_job
       ODOO_QUEUE_JOB_CHANNELS: "root:1"
+      PGHOST: STROHM-18-0-test-db
     restart: unless-stopped
     depends_on:
       - db
-      - smtp
     networks:
       default:
-      globalwhitelist_shared:
     labels:
       doodba.domain.main: ""
     command:
@@ -31,11 +38,16 @@ services:
       - --max-cron-threads=1
 
   db:
-    extends:
-      file: common.yaml
-      service: db
+    image: postgres:16.6
+    container_name: "STROHM-18-0-test-db"
+    environment:
+      DB_HOST: STROHM-18-0-test-db
     env_file:
-      - .docker/db-creation.env
+      - .docker/db-test-creation.env
+    networks:
+      default:
+        aliases:
+          - "STROHM-18-0-test-db"
     restart: unless-stopped
 
   smtp:
@@ -60,9 +72,6 @@ networks:
     internal: ${DOODBA_NETWORK_INTERNAL-true}
     driver_opts:
       encrypted: 1
-
-  globalwhitelist_shared:
-    external: true
 
 volumes:
   filestore:

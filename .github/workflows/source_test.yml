@@ -66,9 +66,9 @@ jobs:
             -e PROXY_MODE="false" \
             odoo-test:latest \
             odoo \
-            -i base,portal,account,payment,payment_stripe,base_automation,l10n_de \
+            -i account,base,base_automation,l10n_de,payment,portal,sale \
             --test-enable \
-            --test-tags=/payment,/payment_stripe,/account,/base,/portal,/base_automation,/l10n_de \
+            --test-tags=/account,/base,/base_automation,/l10n_de,/payment,,/portal,/sale \
             --stop-after-init \
             --limit-memory-soft=0 \
             --limit-time-real=9999999
