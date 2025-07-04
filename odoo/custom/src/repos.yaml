@@ -1,5 +1,5 @@
 # See https://github.com/Tecnativa/doodba#optodoocustomsrcreposyaml
-./odoo:
+odoo:
   defaults:
     # Shallow repositories ($DEPTH_DEFAULT=1) are faster & thinner
     # You may need a bigger depth when merging PRs (use $DEPTH_MERGE
@@ -13,7 +13,7 @@
   merges:
     - origin $ODOO_VERSION
 
-./strohm-addon-repo:
+strohm:
   defaults:
     depth: $DEPTH_DEFAULT
   remotes:

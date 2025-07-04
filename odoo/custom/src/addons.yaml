@@ -6,5 +6,13 @@ ONLY:
 web:
   - web_environment_ribbon
 
-strohm-addon-repo:
+mail:
+  - mail_debrand
+
+server-brand:
+  - portal_odoo_debranding
+  - disable_odoo_online
+  - remove_odoo_enterprise
+
+strohm:
   - strohm_addon
