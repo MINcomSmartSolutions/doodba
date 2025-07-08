@@ -13,6 +13,3 @@ server-brand:
   - portal_odoo_debranding
   - disable_odoo_online
   - remove_odoo_enterprise
-
-strohm_addon:
-  - strohm_addon
