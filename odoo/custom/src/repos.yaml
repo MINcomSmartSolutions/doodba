@@ -13,7 +13,7 @@ odoo:
   merges:
     - origin $ODOO_VERSION
 
-strohm:
+./private/strohm_addon:
   defaults:
     depth: $DEPTH_DEFAULT
   remotes:
