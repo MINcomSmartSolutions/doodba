@@ -14,5 +14,5 @@ server-brand:
   - disable_odoo_online
   - remove_odoo_enterprise
 
-strohm:
+strohm_addon:
   - strohm_addon
