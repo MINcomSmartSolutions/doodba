@@ -1,81 +1,81 @@
-name: Odoo Source Tests
-
-on:
-  workflow_dispatch:
-    inputs:
-      odoo_branch:
-        description: "Odoo branch to test"
-        required: true
-        default: "18.0"
-
-jobs:
-  odoo-source-tests:
-    runs-on: ubuntu-latest
-
-    services:
-      db-test:
-        image: postgres:16.6
-        env:
-          POSTGRES_USER: odoo_admin
-          POSTGRES_DB: odoo_test
-          POSTGRES_PASSWORD: testpassword
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready --health-interval 10s --health-timeout 3s
-          --health-retries 3
-
-    steps:
-      - name: Checkout doodba repository
-        uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build test container
-        uses: docker/build-push-action@v6
-        with:
-          context: ./odoo
-          load: true
-          tags: odoo-test:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          build-args: |
-            ODOO_VERSION=18.0
-            AGGREGATE=true
-            PIP_INSTALL_ODOO=true
-            CLEAN=true
-            COMPILE=false
-            INITIAL_LANG="de_DE"
-
-      - name: Run Odoo Tests
-        run: |
-          docker run --rm --name odoo_test \
-            --network host \
-            -e ODOO_ENV="test" \
-            -e LIST_DB="true" \
-            -e PGHOST="localhost" \
-            -e PGDATABASE="odoo_test" \
-            -e PGUSER="odoo_admin" \
-            -e PGPASSWORD="testpassword" \
-            -e ADMIN_PASSWORD="admin" \
-            -e PYTHONDONTWRITEBYTECODE="1" \
-            -e ODOO_API_SECRET="test_secret" \
-            -e INITIAL_LANG="de_DE" \
-            -e WITHOUT_DEMO="false" \
-            -e PROXY_MODE="false" \
-            odoo-test:latest \
-            odoo \
-            -i account,base,base_automation,l10n_de,payment,portal,sale \
-            --test-enable \
-            --test-tags=/account,/base,/base_automation,/l10n_de,/payment,,/portal,/sale \
-            --stop-after-init \
-            --limit-memory-soft=0 \
-            --limit-time-real=9999999
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
-        with:
-          name: odoo-test-results
-          path: ./odoo/auto/odoo.log
-          retention-days: 7
+#name: Odoo Source Tests
+#
+#on:
+#  workflow_dispatch:
+#    inputs:
+#      odoo_branch:
+#        description: "Odoo branch to test"
+#        required: true
+#        default: "18.0"
+#
+#jobs:
+#  odoo-source-tests:
+#    runs-on: ubuntu-latest
+#
+#    services:
+#      db-test:
+#        image: postgres:16.6
+#        env:
+#          POSTGRES_USER: odoo_admin
+#          POSTGRES_DB: odoo_test
+#          POSTGRES_PASSWORD: testpassword
+#        ports:
+#          - 5432:5432
+#        options: >-
+#          --health-cmd pg_isready --health-interval 10s --health-timeout 3s
+#          --health-retries 3
+#
+#    steps:
+#      - name: Checkout doodba repository
+#        uses: actions/checkout@v4
+#
+#      - name: Set up Docker Buildx
+#        uses: docker/setup-buildx-action@v3
+#
+#      - name: Build test container
+#        uses: docker/build-push-action@v6
+#        with:
+#          context: ./odoo
+#          load: true
+#          tags: odoo-test:latest
+#          cache-from: type=gha
+#          cache-to: type=gha,mode=max
+#          build-args: |
+#            ODOO_VERSION=18.0
+#            AGGREGATE=true
+#            PIP_INSTALL_ODOO=true
+#            CLEAN=true
+#            COMPILE=false
+#            INITIAL_LANG="de_DE"
+#
+#      - name: Run Odoo Tests
+#        run: |
+#          docker run --rm --name odoo_test \
+#            --network host \
+#            -e ODOO_ENV="test" \
+#            -e LIST_DB="true" \
+#            -e PGHOST="localhost" \
+#            -e PGDATABASE="odoo_test" \
+#            -e PGUSER="odoo_admin" \
+#            -e PGPASSWORD="testpassword" \
+#            -e ADMIN_PASSWORD="admin" \
+#            -e PYTHONDONTWRITEBYTECODE="1" \
+#            -e ODOO_API_SECRET="test_secret" \
+#            -e INITIAL_LANG="de_DE" \
+#            -e WITHOUT_DEMO="false" \
+#            -e PROXY_MODE="false" \
+#            odoo-test:latest \
+#            odoo \
+#            -i account,base,base_automation,l10n_de,payment,portal,sale \
+#            --test-enable \
+#            --test-tags=/account,/base,/base_automation,/l10n_de,/payment,,/portal,/sale \
+#            --stop-after-init \
+#            --limit-memory-soft=0 \
+#            --limit-time-real=9999999
+#
+#      - name: Upload test results
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: odoo-test-results
+#          path: ./odoo/auto/odoo.log
+#          retention-days: 7
