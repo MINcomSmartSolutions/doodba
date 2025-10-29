@@ -6,6 +6,7 @@ server-brand:
   - disable_odoo_online
   - remove_odoo_enterprise
 
+---
 # Enable demo ribbon only for devel and test environments
 ONLY:
   ODOO_ENV: # This environment variable must exist and be in the list
