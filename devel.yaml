@@ -25,7 +25,7 @@ services:
     volumes:
       - ./odoo/custom:/opt/odoo/custom:ro,z
       - ./odoo/auto:/opt/odoo/auto:rw,z
-      - filestore:/var/lib/odoo:z
+      - filestore:/var/lib/odoo
     depends_on:
       - db
     command:
